@@ -1,39 +1,37 @@
 package project;
 
-
 import java.io.*;
 import java.net.*;
 import java.util.Random;
 
 public class MovimentoClient {
 
-}
-import java.io.*;
-import java.net.*;
+} 
+
 public class MultiClient {
-  String nomeServer ="localhost";                  // indirizzo server locale  
-  int portaServer = 80;                        // porta x servizio data e ora
-  Socket miosocket;                                
-  BufferedReader tastiera;                         // buffer per l'input da tastiera
+  String nomeServer ="localhost";                  // indirizzo del server che poi è la nostra macchina
+  int portaServer = 80;                            // porta x servizio data e ora
+  Socket miosocket;                                 
+  BufferedReader tastiera;                         // input da tastiera
   String stringaUtente;                            // stringa inserita da utente
   String stringaRicevutaDalServer;                 // stringa ricevuta dal server
   DataOutputStream outVersoServer;                 // stream di output
   BufferedReader inDalServer;                      // stream di input 
 
   public void comunica() {
-    for (;;)                                     // ciclo infinito: termina con FINE
+    for (;;)                                     // ciclo infinito: termina con END
     try{
-      System.out.println("4 ... utente, inserisci la stringa da trasmettere al server:");
+      System.out.println("Movimenti anomali recenti");
       stringaUtente = tastiera.readLine();
       //la spedisco al server 
-      System.out.println("5 ... invio la stringa al server e attendo ...");
+      System.out.println("invio movimenti al server");
       outVersoServer.writeBytes( stringaUtente+'\n');
       //leggo la risposta dal server 
       stringaRicevutaDalServer=inDalServer.readLine();
-      System.out.println("7 ... risposta dal server "+'\n'+stringaRicevutaDalServer );
-      if  (stringaUtente.equals("FINE")) { 
+      System.out.println("Risposta"+'\n'+stringaRicevutaDalServer );
+      if  (stringaUtente.equals("END")) { 
         System.out.println("8 CLIENT: termina elaborazione e chiude connessione" );
-        miosocket.close();                             // chiudo la connessione
+        miosocket.close();                             // chiusura
         break; 
       }
     } 
@@ -72,4 +70,3 @@ public class MultiClient {
     cliente.comunica();
   }   
 }
-
